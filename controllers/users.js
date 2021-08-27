@@ -5,6 +5,7 @@ const BadRequest400 = require('../errors/badRequest400');
 const Unauthorized401 = require('../errors/unauthorized401');
 const NotFound404 = require('../errors/notFound404');
 const Conflict409 = require('../errors/conflict409');
+
 const { JWT_SECRET = 'secret-dev-key' } = process.env;
 
 module.exports.updateProfile = async (req, res, next) => {
@@ -28,6 +29,8 @@ module.exports.updateProfile = async (req, res, next) => {
       next(new BadRequest400('Переданы некорректные данные при обновлении профиля.'));
     } else if (err.name === 'CastError') {
       next(new BadRequest400('Был передан невалидный идентификатор _id.'));
+    } else if (err.code === 11000) {
+      next(new Conflict409('Пользователь с таким Email уже зарегистрирован.'));
     } else {
       next(err);
     }

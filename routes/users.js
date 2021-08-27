@@ -13,15 +13,15 @@ const auth = require('../middlewares/auth');
 // роуты, не требующие авторизации
 router.post('/signup', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().min(3),
+    email: Joi.string().required().min(3).email(),
     password: Joi.string().required(),
     name: Joi.string().required().min(2),
-  }).unknown(true),
+  }),
 }), createUser);
 
 router.post('/signin', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().min(3),
+    email: Joi.string().required().min(3).email(),
     password: Joi.string().required(),
   }),
 }), login);
@@ -32,9 +32,9 @@ router.use(auth);
 router.get('/users/me', getCurrentUser); // роут для получения информации о пользователе
 router.patch('/users/me', celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    email: Joi.string().min(3),
-  }).unknown(true),
+    name: Joi.string().min(2).max(30).required(),
+    email: Joi.string().min(3).email().required(),
+  }),
 }), updateProfile); // обновляет информацию о пользователе (email и имя)
 
 module.exports = router;

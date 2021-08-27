@@ -2,6 +2,7 @@
 // middlewares/auth.js
 const jwt = require('jsonwebtoken');
 const Unauthorized401 = require('../errors/unauthorized401');
+
 const { JWT_SECRET = 'secret-dev-key' } = process.env;
 
 module.exports = (req, res, next) => {

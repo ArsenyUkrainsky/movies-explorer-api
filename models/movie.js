@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const expLink = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/m;
 const movieSchema = new mongoose.Schema(
   {
@@ -92,7 +93,7 @@ const movieSchema = new mongoose.Schema(
       required: [true, '_id пользователя, который сохранил фильм'],
     },
     movieId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Number,
       required: [true, 'id фильма, который содержится в ответе сервиса MoviesExplorer'],
     },
   },

@@ -1,9 +1,11 @@
 const express = require('express');
+
 const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const { DB = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
+
+const { DB = 'mongodb://localhost:27017/moviesdb' } = process.env;
 mongoose.connect(DB, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -17,6 +19,7 @@ const corsHandler = require('./middlewares/corsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
+
 const { PORT = 3000 } = process.env;
 
 app.use(requestLogger); // подключаем логгер запросов
@@ -30,6 +33,4 @@ app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors()); // обработчик ошибок celebrate
 app.use(errorHandler); // Централизованная обработка ошибок
 
-app.listen(PORT, () => {
-  console.log(`Приложение запущено на ${PORT} порту`);
-});
+app.listen(PORT /*  ,() => {console.log(`Приложение запущено на ${PORT} порту`);} */);

@@ -59,7 +59,7 @@ module.exports.deleteMovie = async (req, res, next) => {
       try {
         await Movie.findByIdAndDelete(req.params.movieId);
         res.send({ movie });
-      } catch (e) { next(); }
+      } catch (e) { next(e); } // необходимо обязательно передать в next объект ошибки
     } else throw new Forbidden403('Нельзя удалить чужой фильм.');
   } catch (err) {
     if (err.name === 'CastError') {

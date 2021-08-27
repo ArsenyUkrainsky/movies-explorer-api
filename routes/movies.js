@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 
 const validator = require('validator');
+
 const validationMethod = (data) => {
   const expLink = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gm;
   if (validator.isURL(data) && expLink.test(data)) {
@@ -30,14 +31,14 @@ router.post('/movies', celebrate({
     image: Joi.string().required().custom(validationMethod),
     trailer: Joi.string().required().custom(validationMethod),
     thumbnail: Joi.string().required().custom(validationMethod),
-    movieId: Joi.string().required().length(24).hex(),
-  }).unknown(true),
+    movieId: Joi.number().required(),
+  }),
 }), addMovie);
 
 router.delete('/movies/:movieId', celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required().length(24).hex(), // это hex последовательность
-  }).unknown(true),
+    movieId: Joi.number().required(),
+  }),
 }), deleteMovie);
 
 module.exports = router;
