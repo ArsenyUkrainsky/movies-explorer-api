@@ -1,0 +1,53 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "movies-explorer-api for diploma",
+  "main": "app.js",
+  "scripts": {
+    "lint": "npx eslint .",
+    "lint--ext": "node_modules/.bin/eslint --ext=.js ./",
+    "lint--fix": "node_modules/.bin/eslint --ext=.js ./ --fix",
+    "start": "node app.js",
+    "dev": "nodemon --inspect app.js",
+    "depcheck": "depcheck"
+  },
+  "repository": {
+    "type": "git"
+    },
+  "keywords": [
+    "movies-explorer-api",
+    "yandex",
+    "praktikum",
+    "express",
+    "node",
+    "mongo",
+    "CORS"
+  ],
+  "author": "Arseny Ukrainsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArsenyUkrainsky/movies-explorer-api"
+  },
+  "homepage": "https://github.com/ArsenyUkrainsky/movies-explorer-api",
+  "devDependencies": {
+    "depcheck": "^1.4.2",
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "nodemon": "^2.0.9"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "celebrate": "^15.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.3.0",
+    "express-winston": "^4.1.0",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.1",
+    "validator": "^13.6.0",
+    "winston": "^3.3.3"
+  }
+}
