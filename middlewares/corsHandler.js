@@ -6,10 +6,10 @@ const corsHandler = (req, res, next) => {
 
   // Массив доменов, с которых разрешены кросс-доменные запросы
   const allowedCors = [
-    'http://localhost:3000',
-    'https://localhost:3000',
-    'http://mesto.app.nomoredomains.club',
-    'https://mesto.app.nomoredomains.club',
+    'http://localhost:5000',
+    'https://localhost:5000',
+    'http://movexp.nomoredomains.monster',
+    'https://movexp.nomoredomains.monster',
   ];
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
